@@ -1,0 +1,316 @@
+@mixin flexible($align: flex-start, $justify:flex-start, $dir:row) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: $align;
+    justify-content: $justify;
+    flex-direction: $dir;
+}
+
+.bookWrap{
+    @include flexible(center);
+    .book{
+        @include flexible(center, space-between, column);
+        height: 400px;
+        margin: 4px;
+        width: 245px;
+        padding: 10px;
+        .bookInfo{
+            @include flexible(center, flex-start, $dir: column);
+            width: 260px;
+            cursor: pointer;
+            padding: 5px;
+            box-shadow: 0px 0px 10px #ccc;
+            transition: .5s;
+            &:hover{
+                box-shadow: 0px 0px 20px #000;
+            }
+            &:hover .bookInfo h3,h5{
+                color: #004ed6;
+            }
+            &:hover .bookInfo h5{
+                color: #004ed6;
+            }
+            flex-grow: 2;
+            img{
+                margin-top: 5px;
+                object-fit: cover;
+                width: 200px;
+                height: 165px;
+            }
+            span{
+                color: #ff4338;
+                margin-top: 7px;
+                font-weight: 700;
+            }
+            h3, h5{
+                margin: 0;
+                color: #003083;
+            }
+        }
+        .amountOfGoods{
+            margin-top: 5px;
+            span{
+                color: #000;
+                cursor: pointer;
+            }
+            input{
+                margin-bottom: 5px;
+                background: transparent;
+                width: 25px;
+                height: 25px;
+                text-align: center;
+                color: #0041bb;
+                font-weight: 700;
+                border: none;
+                &:focus{
+                    outline: none;
+                }
+            }
+        }
+        .addToCart{
+            background: #005bff;
+            border: 1px solid #005bff;
+            border-radius: 2px;
+            color: #fff;
+            width: 130px;
+            font-weight: 700;
+            padding: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            &:hover{
+                background: #0041bb;
+            }
+            &:active{
+                position: relative;
+                bottom: -2px;
+            }
+        }
+        #active{
+            background: #fff;
+            border: 1px solid #005bff;
+            color: #005bff;
+        }
+    }
+}
+.bookPopupWrap{
+    position: fixed;
+    top: 60px;
+    background: #fff;
+    width: 1150px;
+    height: 100%;
+    > span{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+        font-size: 50px;
+        width: 55px;
+        height: 50px;
+        cursor: pointer;
+        &:hover{
+            background: #eee;
+        }
+    }
+    .bookContent{
+        z-index: 0;
+        margin-top: 50px;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        img{
+            margin-top: 30px;
+            object-fit: cover;
+            width: 350px;
+            height: 290px;
+        }
+        .bookInfo{
+            width: 700px;
+            h3{
+                font-size: 35px;
+            }
+            h5{
+                font-size: 18px;
+            }
+            >span{
+                color: #ff4338;
+                font-weight: 700;
+                font-size: 20px;
+            }
+            a{
+                text-decoration: none;
+                border: 1px solid #0041bb;
+                border-radius: 15px;
+                padding: 5px;
+                background: #0041bb;
+                color: #fff;
+                margin-left: 50px;
+                transition: .3s;
+                &:hover{
+                    background: #fff;
+                    color: #003083;
+                }
+            }
+            .amountOfGoods{
+                margin-left: 450px;
+                display: flex;  
+                align-items: center;
+                span{
+                    color: #000;
+                    cursor: pointer;
+                    font-size: 40px;
+                }
+                input{
+                    background: transparent;
+                    width: 25px;
+                    height: 25px;
+                    text-align: center;
+                    color: #0041bb;
+                    font-weight: 700;
+                    border: none;
+                    border: 1px solid #000;
+                    &:focus{
+                        outline: none;
+                    }
+                }
+            }
+            .addToCart{
+                margin-top: 10px;
+                margin-left: 437px;
+                background: #005bff;
+                border: 1px solid #005bff;
+                border-radius: 2px;
+                color: #fff;
+                width: 130px;
+                font-weight: 700;
+                padding: 10px;
+                margin-bottom: 10px;
+                cursor: pointer;
+                &:hover{
+                    background: #0041bb;
+                }
+                &:active{
+                    position: relative;
+                    bottom: -2px;
+                }
+            }
+            #active{
+                background: #fff;
+                border: 1px solid #005bff;
+                color: #005bff;
+            }
+        }
+    }
+}
+@media screen and (max-width: 450px){
+    .bookPopupWrap{
+        width: 340px;
+        margin-left: -20px;
+        >span{
+            position: absolute;
+            margin-left: 50px;
+            font-size: 40px;
+            margin-top: 0px;
+        }
+        .bookContent{
+            height: 450px;
+            overflow: scroll;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-direction: column;
+            img{
+                margin: 0;
+                width: 340px;
+                height: 290px;
+            }
+            .bookInfo{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                width: 300px;
+                .amountOfGoods{
+                    margin: 0;
+                }
+                h3{
+                    text-align: center;
+                    margin-top: 0;
+                    font-size: 23px;
+                }
+                h5{
+                    text-align: center;
+                    margin: 0;
+                }
+                a{
+                    padding: 2px;
+                    margin: 0;
+                }
+                .addToCart{
+                    margin: 0;
+                    width: 200px;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 450px) and (min-height: 650px){
+    .bookContent{
+        height: 550px !important;
+    }
+}
+@media screen and (max-width: 450px) and (min-height: 750px){
+    .bookContent{
+        height: 650px !important;
+    }
+}
+@media screen and (min-width: 760px) and (min-height: 1000px){
+    .bookWrap .book{
+        height: 450px;
+        width: 200px;
+        .bookInfo{
+            height: 300px;
+            width: 200px;
+        }
+    }
+    .bookPopupWrap{
+        width: 700px;
+        .bookContent{
+            margin: 0;
+            justify-content: flex-start;
+            display: flex;
+            width: 650px;
+            flex-direction: column;
+            img{
+                width: 400px;
+                height: 380px;
+            }
+            .bookInfo{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 650px;
+                .amountOfGoods{
+                    margin: 0;
+                    margin-bottom: 10px;
+                    span{
+                        font-size: 50px;
+                    }
+                    input{
+                        font-size: 25px;
+                        width: 50px;
+                        height: 50px;
+                    }
+                }
+                .addToCart{
+                    width: 300px;
+                    height: 50px;
+                    font-size: 25px;
+                    margin: 0;
+                }
+                a{
+                    margin: 20px 0;
+                }
+            }
+        }
+    }
+}
